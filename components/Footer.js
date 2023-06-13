@@ -1,49 +1,59 @@
-import Link from 'next/link';
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-6">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-wrap items-center justify-between">
-          <div className="w-full md:w-1/3 text-center md:text-left mb-4 md:mb-0">
-            <h2 className="text-xl font-bold">Happy Care</h2>
-            <p className="mt-2">Providing quality medical aid services.</p>
+    <footer className="bg-gray-900 text-white">
+      <div className="container mx-auto py-8 px-4">
+        <div className="flex flex-wrap items-center justify-center">
+          <div className="w-full md:w-1/4 mb-6 md:mb-0">
+            <h2 className="text-2xl font-bold">Happy Care</h2>
+            <p className="mt-4">
+              Happy Care is a prepaid medical aid company based in Johannesburg, South Africa. We provide comprehensive healthcare solutions to our members.
+            </p>
           </div>
-          <div className="w-full md:w-1/3 text-center mb-4 md:mb-0">
-            <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
-            <ul className="text-gray-400">
+          <div className="w-full md:w-1/4 mb-6 md:mb-0">
+            <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
+            <p>123 Happy Street</p>
+            <p>Johannesburg, South Africa</p>
+            <p>Phone: +1 123-456-7890</p>
+            <p>Email: info@happycare.com</p>
+          </div>
+          <div className="w-full md:w-1/4 mb-6 md:mb-0">
+            <h3 className="text-xl font-semibold mb-4">Links</h3>
+            <ul>
               <li className="mb-2">
-                <Link href="/about" legacyBehavior>
-                  <a className="hover:text-white">Fees</a>
-                </Link>
+                <a href="/">Home</a>
               </li>
               <li className="mb-2">
-                <Link href="/services" legacyBehavior>
-                  <a className="hover:text-white">Services</a>
-                </Link>
+                <a href="/about">About Us</a>
               </li>
               <li className="mb-2">
-                <Link href="/contact" legacyBehavior>
-                  <a className="hover:text-white">Contact Us</a>
-                </Link>
+                <a href="/services">Services</a>
               </li>
               <li className="mb-2">
-                <Link href="/faqs" legacyBehavior>
-                  <a className="hover:text-white">FAQs</a>
-                </Link>
+                <a href="/contact">Contact</a>
               </li>
             </ul>
           </div>
-          <div className="w-full md:w-1/3 text-center md:text-right">
-            <h3 className="text-lg font-semibold mb-2">Contact Info</h3>
-            <p className="text-gray-400">
-              123 Medical Center <br />
-              Johannesburg, South Africa <br />
-              Phone: (123) 456-7890 <br />
-              Email: info@happycare.co.za
-            </p>
+          <div className="w-full md:w-1/4">
+            <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
+            <div className="flex items-center space-x-4">
+              <a href="#" className="text-gray-400 hover:text-white">
+                <FaFacebookF className="text-2xl" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white">
+                <FaTwitter className="text-2xl" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white">
+                <FaInstagram className="text-2xl" />
+              </a>
+            </div>
           </div>
         </div>
+        <hr className="border-gray-700 my-6" />
+        <p className="text-center text-sm">
+          &copy; {new Date().getFullYear()} Happy Care. All rights reserved.
+        </p>
       </div>
     </footer>
   );
