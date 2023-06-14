@@ -1,10 +1,57 @@
 import Head from 'next/head';
 import Navbar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import { Toaster, toast } from "react-hot-toast";
+import { useState } from "react";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [buttonText, setButtonText] = useState("Login");
+  const [error, setError] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setButtonText("Logging in...");
+    try {
+      const response = await fetch(`api/users?action=login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        toast.success(`Login successful!`);
+        localStorage.setItem("token", data.token);
+        console.log(data.data);
+        window.location.href = "/dashboard";
+        setButtonText("Login");
+      } else {
+        toast.error(`Login failed!`);
+        console.log(data.message);
+        setError(data.message);
+        setButtonText("Try again");
+      }
+    } catch (error) {
+      setButtonText("Try again");
+      toast.error(`Login failed!`);
+      console.log(error.message);
+      setError(error.message);
+    }
+  };
+
   return (
     <div className="bg-gray-100 min-h-screen">
+      <Toaster
+        position="top-right"
+        reverseOrder={true}
+      />
       <Head>
         <title>Login - Happy Care</title>
         <link rel="icon" href="/favicon.ico" />
@@ -24,6 +71,7 @@ export default function Login() {
               </a>
             </p>
           </div>
+          <p className="text-center text-red-500 text-bold">{error}</p>
           <form className="mt-8 space-y-6">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
@@ -36,6 +84,8 @@ export default function Login() {
                   name="email"
                   type="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
@@ -50,6 +100,8 @@ export default function Login() {
                   name="password"
                   type="password"
                   autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
@@ -80,6 +132,7 @@ export default function Login() {
             <div>
               <button
                 type="submit"
+                onClick={handleLogin}
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
@@ -97,7 +150,7 @@ export default function Login() {
                     />
                   </svg>
                 </span>
-                Sign in
+                {buttonText}
               </button>
             </div>
           </form>
