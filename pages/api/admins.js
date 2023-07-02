@@ -37,11 +37,9 @@ export const register = async (req, res) => {
     const user = {
       name,
       phone,
-      idNumber,
       email,
       password: hashedPassword,
-      balance: 0,
-      role: 'client',
+      role: 'admin',
     };
     collection.insertOne(user).then(() => {
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '777h' });

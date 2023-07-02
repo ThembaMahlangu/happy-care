@@ -63,8 +63,17 @@ const Navbar = () => {
                 <Link href="/dashboard" legacyBehavior>
                   <a className={`nav-link hover:text-orange-500 text-lg pt-5 ${isActive('/dashboard')}`}>Home</a>
                 </Link>
+                <Link href="/topup" legacyBehavior>
+                  <a className={`nav-link hover:text-orange-500 text-lg pt-5 ${isActive('/topup')}`}>Top Up</a>
+                </Link>
+                <Link href="/transactions" legacyBehavior>
+                  <a className={`nav-link hover:text-orange-500 text-lg pt-5 ${isActive('/transactions')}`}>Transactions</a>
+                </Link>
                 <Link href="/advance" legacyBehavior>
                   <a className={`nav-link hover:text-orange-500 text-lg pt-5 ${isActive('/advance')}`}>Advance</a>
+                </Link>
+                <Link href="/profile" legacyBehavior>
+                  <a className={`nav-link hover:text-orange-500 text-lg pt-5 ${isActive('/profile')}`}>Profile</a>
                 </Link>
               </>
             ) : (
@@ -100,8 +109,17 @@ const Navbar = () => {
                 <Link href="/dashboard" legacyBehavior>
                   <a className={`block nav-link ${isActive('/dashboard')}`}>Home</a>
                 </Link>
+                <Link href="/topup" legacyBehavior>
+                  <a className={`block nav-link ${isActive('/topup')}`}>Top Up</a>
+                </Link>
+                <Link href="/transactions" legacyBehavior>
+                  <a className={`block nav-link ${isActive('/transactions')}`}>Transactions</a>
+                </Link>
                 <Link href="/advance" legacyBehavior>
                   <a className={`block nav-link ${isActive('/advance')}`}>Advance</a>
+                </Link>
+                <Link href="/profile" legacyBehavior>
+                  <a className={`block nav-link ${isActive('/profile')}`}>Profile</a>
                 </Link>
               </>
             ) : (
